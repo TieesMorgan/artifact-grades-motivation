@@ -724,9 +724,46 @@
         transform: none;
       }
     }
+
+    /* ===== Image-first revision ===== */
+    .hero{max-width:none;background:#1C1B18;color:#F8F5EE;padding:3.25rem 1.5rem 2rem}
+    .hero h1{color:#F8F5EE}
+    .hero p{color:#CFC9BA;max-width:560px}
+    .hero-kicker{background:rgba(255,255,255,.1);color:#8FD3C9}
+    .scroll-cue{color:#A39E90}
+    .film{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;max-width:1320px;margin:2.25rem auto 1.75rem;text-align:left}
+    .film a{display:block;color:inherit;text-decoration:none;border-radius:14px;overflow:hidden;background:#2A2924;transition:transform .25s ease,box-shadow .25s ease}
+    .film a:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+    .film svg{display:block;width:100%;aspect-ratio:5/3}
+    .film span{display:block;padding:.7rem .9rem;font-family:var(--font-serif);font-size:1.1rem;font-weight:600}
+    .film em{display:block;font-family:var(--font-mono);font-size:.7rem;font-style:normal;color:#E9B94F;letter-spacing:.08em;text-transform:uppercase}
+    .story-step{overflow:hidden}
+    .story-step figure{position:relative;margin:-2rem -2rem 1.25rem}
+    .story-step figure svg{display:block;width:100%;aspect-ratio:5/3}
+    .story-step figcaption{position:absolute;left:1rem;bottom:.8rem;font:600 .7rem var(--font-mono);letter-spacing:.06em;text-transform:uppercase;background:rgba(28,27,24,.88);color:#F8F5EE;padding:.3rem .7rem;border-radius:999px}
+    .story-step .lede{font-family:var(--font-serif);font-size:1.3rem;line-height:1.4;color:var(--ink-primary)}
+    details.more summary{cursor:pointer;font:600 .75rem var(--font-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--accent-teal);margin-bottom:.9rem}
+    details.more[open] summary{margin-bottom:1rem}
+    .references-section{padding:1.75rem 2.5rem}
+    .references-section .ref-header{margin-bottom:1rem}
+    @media (min-width:941px){.narrative-column{gap:32vh}}
+    @media (max-width:940px){
+      .film{grid-template-columns:repeat(5,72%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.5rem}
+      .film a{scroll-snap-align:start}
+    }
   </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="s-athens" viewBox="0 0 400 240"><rect width="400" height="240" fill="#E3F1EF"/><circle cx="318" cy="64" r="32" fill="#E9B94F"/><path d="M0 196Q120 150 230 186T400 170V240H0Z" fill="#B9D8D3"/><g fill="#F8F5EE" stroke="#246A63" stroke-width="3"><path d="M84 94L200 50L316 94Z"/><rect x="90" y="98" width="220" height="10"/><rect x="104" y="110" width="16" height="74"/><rect x="140" y="110" width="16" height="74"/><rect x="176" y="110" width="16" height="74"/><rect x="212" y="110" width="16" height="74"/><rect x="248" y="110" width="16" height="74"/><rect x="284" y="110" width="16" height="74"/><rect x="82" y="184" width="236" height="10"/><rect x="72" y="194" width="256" height="10"/></g><rect y="204" width="400" height="36" fill="#246A63"/></symbol>
+<symbol id="s-bologna" viewBox="0 0 400 240"><rect width="400" height="240" fill="#FBF2E1"/><path d="M40 200V90a40 40 0 0 1 80 0V200ZM160 200V90a40 40 0 0 1 80 0V200ZM280 200V90a40 40 0 0 1 80 0V200Z" fill="#E9D3A8"/><rect y="200" width="400" height="40" fill="#B98223"/><circle cx="140" cy="128" r="14" fill="#1C1B18"/><path d="M118 200l8-56h28l8 56z" fill="#246A63"/><circle cx="262" cy="128" r="14" fill="#1C1B18"/><path d="M240 200l8-56h28l8 56z" fill="#B83A2D"/><rect x="92" y="66" width="68" height="30" rx="15" fill="#fff" stroke="#246A63" stroke-width="2"/><rect x="244" y="56" width="68" height="30" rx="15" fill="#fff" stroke="#B83A2D" stroke-width="2"/><g fill="#246A63"><circle cx="114" cy="81" r="3"/><circle cx="126" cy="81" r="3"/><circle cx="138" cy="81" r="3"/></g><g fill="#B83A2D"><circle cx="266" cy="71" r="3"/><circle cx="278" cy="71" r="3"/><circle cx="290" cy="71" r="3"/></g></symbol>
+<symbol id="s-cambridge" viewBox="0 0 400 240"><rect width="400" height="240" fill="#F9E8E6"/><path d="M200 34l7 16 17 2-13 12 4 17-15-9-15 9 4-17-13-12 17-2z" fill="#E9B94F"/><rect x="90" y="130" width="70" height="80" fill="#D98D83"/><rect x="165" y="90" width="70" height="120" fill="#B83A2D"/><rect x="240" y="150" width="70" height="60" fill="#E3B5AE"/><g font-family="Newsreader,Georgia,serif" font-size="40" font-weight="600" text-anchor="middle" fill="#fff"><text x="125" y="182">2</text><text x="200" y="146">1</text><text x="275" y="192">3</text></g><rect y="210" width="400" height="30" fill="#1C1B18"/><text x="200" y="230" fill="#F8F5EE" font-size="12" font-family="JetBrains Mono,monospace" text-anchor="middle">TRIPOS · 1792</text></symbol>
+<symbol id="s-harvard" viewBox="0 0 400 240"><rect width="400" height="240" fill="#EFECE4"/><rect x="100" y="24" width="200" height="192" rx="6" fill="#fff" stroke="#1C1B18" stroke-width="3"/><path d="M100 60H300M214 24V216" stroke="#B83A2D" stroke-width="2.5"/><path d="M100 96H300M100 126H300M100 156H300M100 186H300" stroke="#DCD6C8" stroke-width="2"/><g fill="#DCD6C8"><rect x="116" y="76" width="80" height="8" rx="3"/><rect x="116" y="106" width="80" height="8" rx="3"/><rect x="116" y="136" width="80" height="8" rx="3"/><rect x="116" y="166" width="80" height="8" rx="3"/></g><text x="116" y="48" font-size="13" font-family="JetBrains Mono,monospace" fill="#B83A2D">1877</text><g font-family="Newsreader,Georgia,serif" font-size="22" font-weight="600" fill="#1C1B18"><text x="258" y="84">93%</text><text x="258" y="114">88%</text><text x="258" y="144">74%</text><text x="258" y="174">61%</text></g></symbol>
+<symbol id="s-holyoke" viewBox="0 0 400 240"><rect width="400" height="240" fill="#FBF2E1"/><g font-family="Newsreader,Georgia,serif" font-size="48" font-weight="600" fill="#fff" text-anchor="middle"><rect x="28" y="64" width="60" height="84" rx="8" fill="#246A63"/><text x="58" y="122">A</text><rect x="100" y="64" width="60" height="84" rx="8" fill="#4F8F85"/><text x="130" y="122">B</text><rect x="172" y="64" width="60" height="84" rx="8" fill="#B98223"/><text x="202" y="122">C</text><rect x="244" y="64" width="60" height="84" rx="8" fill="#C9622B"/><text x="274" y="122">D</text><rect x="316" y="64" width="60" height="84" rx="8" fill="#B83A2D"/><text x="346" y="122">F</text></g><text x="200" y="196" font-size="14" font-family="JetBrains Mono,monospace" font-weight="600" fill="#1C1B18" text-anchor="middle">A–F · 1897</text></symbol>
+<symbol id="s-card" viewBox="0 0 400 240"><rect width="400" height="240" fill="#EFECE4"/><rect x="80" y="26" width="240" height="188" rx="8" fill="#FCFBF7" stroke="#1C1B18" stroke-width="3"/><path d="M80 66H320" stroke="#1C1B18" stroke-width="3"/><g fill="#DCD6C8"><rect x="100" y="38" width="90" height="10" rx="3"/><rect x="100" y="90" width="100" height="9" rx="3"/><rect x="100" y="112" width="80" height="9" rx="3"/><rect x="100" y="134" width="110" height="9" rx="3"/><rect x="100" y="156" width="70" height="9" rx="3"/><rect x="100" y="178" width="90" height="9" rx="3"/></g><g transform="rotate(-8 257 147)"><rect x="214" y="118" width="86" height="58" rx="10" fill="#F9E8E6" stroke="#B83A2D" stroke-width="4"/><text x="257" y="162" text-anchor="middle" font-family="Newsreader,Georgia,serif" font-size="42" font-weight="600" fill="#B83A2D">B-</text></g></symbol>
+<symbol id="s-variance" viewBox="0 0 400 240"><rect width="400" height="240" fill="#FBF2E1"/><g font-family="JetBrains Mono,monospace" font-size="12" font-weight="600" fill="#4E4B43"><text x="50" y="56">TRUE MASTERY</text><text x="50" y="140">WHAT THE TRANSCRIPT SHOWS</text></g><rect x="50" y="66" width="300" height="40" fill="#246A63"/><rect x="50" y="150" width="75" height="40" fill="#246A63"/><rect x="125" y="150" width="135" height="40" fill="#B98223"/><rect x="260" y="150" width="90" height="40" fill="#B83A2D"/><g font-family="Newsreader,Georgia,serif" font-size="24" font-weight="600" fill="#fff"><text x="62" y="94">88%</text><text x="58" y="178">68%</text></g></symbol>
+<symbol id="s-feedback" viewBox="0 0 400 240"><rect width="400" height="240" fill="#E3F1EF"/><rect x="40" y="36" width="130" height="168" rx="8" fill="#fff" stroke="#B83A2D" stroke-width="3"/><circle cx="140" cy="62" r="22" fill="#F9E8E6" stroke="#B83A2D" stroke-width="3"/><text x="140" y="70" text-anchor="middle" font-family="Newsreader,Georgia,serif" font-size="22" font-weight="600" fill="#B83A2D">B-</text><g fill="#DCD6C8"><rect x="56" y="100" width="98" height="8" rx="3"/><rect x="56" y="120" width="98" height="8" rx="3"/><rect x="56" y="140" width="98" height="8" rx="3"/><rect x="56" y="160" width="98" height="8" rx="3"/><rect x="56" y="180" width="98" height="8" rx="3"/></g><path d="M186 120h28" stroke="#1C1B18" stroke-width="3"/><path d="M214 111l14 9-14 9z" fill="#1C1B18"/><rect x="230" y="36" width="130" height="168" rx="8" fill="#fff" stroke="#246A63" stroke-width="3"/><circle cx="332" cy="62" r="18" fill="#246A63"/><path d="M323 62l6 7 12-14" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g fill="#B9D8D3"><rect x="246" y="52" width="64" height="8" rx="3"/><rect x="246" y="68" width="48" height="8" rx="3"/><rect x="246" y="100" width="98" height="8" rx="3"/><rect x="246" y="118" width="98" height="8" rx="3"/></g><rect x="246" y="142" width="98" height="40" rx="10" fill="#E3F1EF" stroke="#246A63" stroke-width="2"/><path d="M258 156h60M258 168h42" stroke="#246A63" stroke-width="3" stroke-linecap="round"/></symbol>
+</defs></svg>
 
   <!-- Scroll Progress Indicator -->
   <div class="progress-bar-container" aria-hidden="true">
@@ -750,10 +787,9 @@
   <header class="hero">
     <span class="hero-kicker">Interactive Scrollytelling Artifact</span>
     <h1>From Oral Disputation to Sorting Machine</h1>
-    <p>
-      An interactive exploration tracing how letter grades evolved from 19th-century administrative shortcuts into high-stakes sorting tools—and how informational feedback restores intrinsic motivation and neurodivergent equity.
-    </p>
-    <div class="scroll-cue">↓ Scroll to explore each historical &amp; psychological shift</div>
+    <p>How letter grades went from live debate to an administrative sorting tool, and what brings motivation back.</p>
+    <nav class="film" aria-label="Timeline of grading history"><a href="#scene-2"><svg viewBox="0 0 400 240" role="img" aria-label="Athens"><use href="#s-athens"/></svg><span><em>Classical</em>Athens</span></a><a href="#scene-2"><svg viewBox="0 0 400 240" role="img" aria-label="Bologna"><use href="#s-bologna"/></svg><span><em>1088</em>Bologna</span></a><a href="#scene-3"><svg viewBox="0 0 400 240" role="img" aria-label="Cambridge"><use href="#s-cambridge"/></svg><span><em>1792</em>Cambridge</span></a><a href="#scene-3"><svg viewBox="0 0 400 240" role="img" aria-label="Harvard"><use href="#s-harvard"/></svg><span><em>1877</em>Harvard</span></a><a href="#scene-3"><svg viewBox="0 0 400 240" role="img" aria-label="Mount Holyoke"><use href="#s-holyoke"/></svg><span><em>1897</em>Mount Holyoke</span></a></nav>
+    <div class="scroll-cue">↓ Scroll to explore each shift</div>
   </header>
 
   <!-- Main Scrollytelling Container -->
@@ -973,14 +1009,18 @@
 
       <!-- Scene 1 -->
       <article class="story-step is-active" id="scene-1" data-scene="1">
+        <figure><svg viewBox="0 0 400 240" role="img" aria-label="Fig. 1 · One letter"><use href="#s-card"/></svg><figcaption>Fig. 1 · One letter</figcaption></figure>
         <span class="step-badge">Chapter 01 • The Unquestioned Constant</span>
         <h2>The "Grammar of Schooling"</h2>
+        <p class="lede">One letter, decades of habit, almost no information.</p>
+        <details class="more"><summary>Read the full argument</summary>
         <p>
           In formal schooling, grades are often treated as an unquestioned constant, part of what Tyack and Cuban (1995, as cited in Schneider &amp; Hutt, 2014) term the “grammar of schooling.”
         </p>
         <p>
           I initially assumed letter grades directly reflected learning, but educational research reveals a far more complex reality. Understanding what grades represent, their historical origins, and their interaction with feedback has redefined how I interpret evaluation.
         </p>
+        </details>
         <div class="reflection-callout">
           Ultimately, grades function as multidimensional administrative tools rather than pure measures of learning.
         </div>
@@ -988,38 +1028,50 @@
 
       <!-- Scene 2 -->
       <article class="story-step" id="scene-2" data-scene="2">
+        <figure><svg viewBox="0 0 400 240" role="img" aria-label="Fig. 2 · Live disputation"><use href="#s-bologna"/></svg><figcaption>Fig. 2 · Live disputation</figcaption></figure>
         <span class="step-badge">Chapter 02 • Antiquity Through Renaissance</span>
         <h2>Before Numbers: Oral Disputation</h2>
+        <p class="lede">Before numbers, learning was shown out loud, by arguing it live.</p>
+        <details class="more"><summary>Read the full argument</summary>
         <p>
           Historically, numerical marks were not designed for pedagogical guidance. Ancient and medieval education relied on live oral disputations, dialectical questioning, and narrative feedback without letter marks or competitive rankings (Williams, 2022).
         </p>
         <p>
           In these dialogic settings, evaluation was inseparable from instruction: instructors observed how a learner reasoned through problems in real time rather than reducing complex understanding into a permanent symbol.
         </p>
-      </article>
+      </details>
+        </article>
 
       <!-- Scene 3 -->
       <article class="story-step" id="scene-3" data-scene="3">
+        <figure><svg viewBox="0 0 400 240" role="img" aria-label="Fig. 3 · Ledgers of rank"><use href="#s-harvard"/></svg><figcaption>Fig. 3 · Ledgers of rank</figcaption></figure>
         <span class="step-badge">Chapter 03 • 18th–19th Century Standardization</span>
         <h2>Rise of the Administrative Sorting Machine</h2>
+        <p class="lede">Scarce fellowships and swelling classrooms turned ranking into a system.</p>
+        <details class="more"><summary>Read the full argument</summary>
         <p>
           Standardized grading systems emerged during the 18th and 19th centuries—from Cambridge rankings to A–F scales at Harvard and Mount Holyoke—as administrative mechanisms to manage institutional records and sort students for expanding labor markets (Schneider &amp; Hutt, 2014; Williams, 2022).
         </p>
         <p>
           This history explains why high-stakes marking encourages students to become risk-averse “entrepreneurial learners” who optimize points over authentic curiosity (Haswell, 1999, as cited in Schneider &amp; Hutt, 2014; Williams, 2022).
         </p>
-      </article>
+      </details>
+        </article>
 
       <!-- Scene 4 -->
       <article class="story-step" id="scene-4" data-scene="4">
+        <figure><svg viewBox="0 0 400 240" role="img" aria-label="Fig. 4 · Mastery vs. mark"><use href="#s-variance"/></svg><figcaption>Fig. 4 · Mastery vs. mark</figcaption></figure>
         <span class="step-badge">Chapter 04 • Composite Variance &amp; Neurodivergent Equity</span>
         <h2>What a Single Letter Actually Measures</h2>
+        <p class="lede">A single letter blends mastery, compliance and bias.</p>
+        <details class="more"><summary>Read the full argument</summary>
         <p>
           Although students view grades as indicators of mastery, research demonstrates they are composite measures: teacher-assigned grades correlate only modestly with standardized achievement, as 75% of GPA variance reflects non-cognitive factors like effort, attendance, and subjective behavior (Brookhart et al., 2016; Williams, 2022).
         </p>
         <p>
           Furthermore, final marks are frequently distorted by interpersonal bias and favoritism (Baniasadi et al., 2023; Brookhart et al., 2016). This vulnerability particularly affects <strong>neurodivergent learners</strong> when educators penalize behavioral differences, non-traditional problem-solving, or compliance factors like attention rather than assessing subject mastery (Arhavbarien, 2026; Baniasadi et al., 2023; Williams, 2022).
         </p>
+        </details>
         <div class="reflection-callout">
           Use the interactive simulator on the left to see how high compliance stakes and bias distort an 88% mastery score.
         </div>
@@ -1027,14 +1079,18 @@
 
       <!-- Scene 5 -->
       <article class="story-step" id="scene-5" data-scene="5">
+        <figure><svg viewBox="0 0 400 240" role="img" aria-label="Fig. 5 · Grade vs. feedback"><use href="#s-feedback"/></svg><figcaption>Fig. 5 · Grade vs. feedback</figcaption></figure>
         <span class="step-badge">Chapter 05 • Self-Determination &amp; Lifelong Competence</span>
         <h2>Informational Feedback Exit Ramps</h2>
+        <p class="lede">Remove the letter and the feedback finally gets read.</p>
+        <details class="more"><summary>Read the full argument</summary>
         <p>
           Grades and descriptive feedback influence motivation differently. Self-determination theory contrasts controlling evaluations with informational feedback that supports autonomy and competence (Ryan &amp; Deci, 2020).
         </p>
         <p>
           Letter grades offer minimal guidance, and combining marks with comments often leads students to ignore actionable advice (Ryan &amp; Deci, 2020; Williams, 2022). Conversely, low-stakes practice and criteria-referenced feedback foster self-regulation without defensiveness, driving genuine intellectual growth (Arhavbarien, 2026; Baniasadi et al., 2023; Ryan &amp; Deci, 2020).
         </p>
+        </details>
         <div class="reflection-callout">
           Recognizing these limitations allows me to look past grade performance and focus on lifelong competence through low-stakes practice and informational feedback.
         </div>
@@ -1049,14 +1105,14 @@
       <h2>References (APA 7th Edition)</h2>
       <button class="copy-ref-btn" onclick="copyReferences(this)">Copy APA References</button>
     </div>
-    <div class="apa-list" id="apaList">
+    <details class="more"><summary>Show all 6 sources</summary><div class="apa-list" id="apaList">
       <p>Arhavbarien, J. (2026). Low-stakes assessments in secondary and further education schools: A systematic literature review. <em>Social Sciences &amp; Humanities Open</em>, <em>13</em>, Article 102320. https://doi.org/10.1016/j.ssaho.2025.102320</p>
       <p>Baniasadi, A., Salehi, K., Khodaie, E., Bagheri Noaparast, K., &amp; Izanloo, B. (2023). Fairness in classroom assessment: A systematic review. <em>Asia-Pacific Education Researcher</em>, <em>32</em>(1), 91–109. https://doi.org/10.1007/s40299-021-00636-z</p>
       <p>Brookhart, S. M., Guskey, T. R., Bowers, A. J., McMillan, J. H., Smith, J. K., Smith, L. F., Stevens, M. T., &amp; Welsh, M. E. (2016). A century of grading research: Meaning and value in the most common educational measure. <em>Review of Educational Research</em>, <em>86</em>(4), 803–848. https://doi.org/10.3102/0034654316672069</p>
       <p>Ryan, R. M., &amp; Deci, E. L. (2020). Intrinsic and extrinsic motivation from a self-determination theory perspective: Definitions, theory, practices, and future directions. <em>Contemporary Educational Psychology</em>, <em>61</em>, Article 101860. https://doi.org/10.1016/j.cedpsych.2020.101860</p>
       <p>Schneider, J., &amp; Hutt, E. (2014). Making the grade: A history of the A–F marking scheme. <em>Journal of Curriculum Studies</em>, <em>46</em>(2), 201–224. https://doi.org/10.1080/00220272.2013.790480</p>
       <p>Williams, B. A. (2022). Teaching students to feel pleasure and pain at the wrong thing: The history of grades and grading. <em>Principia: A Journal of Classical Education</em>, <em>1</em>(1), 1–22. https://doi.org/10.5840/principia20229276</p>
-    </div>
+    </div></details>
   </footer>
 
   <script>
