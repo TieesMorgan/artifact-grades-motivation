@@ -59,7 +59,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 0.6rem;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
     }
 
     .band-badge {
@@ -98,7 +98,8 @@
 
     .clickable {
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      pointer-events: all;
+      transition: transform 0.18s ease, opacity 0.2s ease;
     }
 
     .clickable:hover {
@@ -116,9 +117,9 @@
       background: #25231E;
       border: 1px solid #444036;
       color: #EFECE4;
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      padding: 0.35rem 0.8rem;
+      padding: 0.38rem 0.85rem;
       border-radius: 999px;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -129,251 +130,104 @@
     .action-btn.active-teal { background: #2E8B80; color: #FFF; border-color: #2E8B80; }
     .action-btn.active-red { background: #D94E3F; color: #FFF; border-color: #D94E3F; }
 
-    /* Band 4: 100-Icon Pictogram Waffle Matrix */
-    .waffle-container {
+    /* BAND 1: Reliable HTML/CSS Visual Equation + Clickable X-Ray Card */
+    .b1-stage {
       background: #151412;
       border: 1px solid #2C2A24;
       border-radius: 14px;
-      padding: 1.15rem;
-    }
-
-    .waffle-controls {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      background: #1E1C18;
-      padding: 0.65rem 1rem;
-      border-radius: 12px;
-      border: 1px solid #333029;
-      margin-bottom: 1rem;
-      justify-content: space-between;
-    }
-
-    .waffle-controls label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .waffle-controls input[type="range"] {
-      width: 150px;
-      accent-color: #D94E3F;
-      cursor: pointer;
-    }
-
-    .waffle-controls input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: #2E8B80;
-      cursor: pointer;
-    }
-
-    .waffle-layout {
-      display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
-      gap: 1.2rem;
-      align-items: center;
-    }
-
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(10, 1fr);
-      gap: 6px;
-      background: #1C1B18;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid #2F2C25;
-    }
-
-    .pico-cell {
-      aspect-ratio: 1;
-      border-radius: 6px;
+      padding: 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.2s ease, opacity 0.2s ease;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .pico-cell.dimmed { opacity: 0.22; transform: scale(0.92); }
-    .pico-cell svg { width: 72%; height: 72%; }
-
-    .legend-stack {
-      display: grid;
+    .b1-tile {
+      width: 126px;
+      height: 156px;
+      background: #22201B;
+      border: 2px solid #D99B38;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       gap: 0.65rem;
+      padding: 0.75rem;
+      text-align: center;
     }
 
-    .stat-pill {
+    .b1-tile span {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .b1-op {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #7D7668;
+    }
+
+    .xray-card {
+      width: 280px;
+      min-height: 186px;
+      border-radius: 18px;
+      padding: 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease, border-color 0.25s ease, background 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .xray-card:hover {
+      transform: scale(1.02);
+    }
+
+    .xray-card.closed {
+      background: #2E1B19;
+      border: 3px solid #D94E3F;
+    }
+
+    .xray-card.open {
+      background: #1A1F1E;
+      border: 3px solid #2E8B80;
+    }
+
+    .grade-circle {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: rgba(217, 78, 63, 0.22);
+      border: 4px solid #D94E3F;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      background: #1F1E1A;
-      border: 1.5px solid #333029;
-      padding: 0.6rem 0.85rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-
-    .stat-pill:hover { transform: translateX(4px); }
-
-    .stat-num {
+      justify-content: center;
       font-family: Georgia, serif;
-      font-size: 1.45rem;
+      font-size: 2.75rem;
       font-weight: 700;
-      min-width: 54px;
+      color: #D94E3F;
+      margin-bottom: 0.65rem;
     }
 
-    .stat-lbl {
-      font-size: 0.8rem;
-      font-weight: 700;
-      line-height: 1.25;
+    .xray-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
     }
 
-    .stat-lbl small {
+    .xray-cell {
+      border-radius: 10px;
+      padding: 0.55rem 0.4rem;
+      text-align: center;
+    }
+
+    .xray-cell strong {
       display: block;
-      font-weight: 500;
-      color: #A69F91;
-      font-size: 0.71rem;
-    }
-
-    /* Compact APA Footer */
-    .apa-strip {
-      padding: 1.15rem 1.4rem;
-      background: #161512;
-      font-size: 0.75rem;
-      color: #9E9789;
-    }
-
-    .apa-strip summary {
-      cursor: pointer;
-      font-weight: 700;
-      color: #D99B38;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .apa-strip p {
-      padding-left: 2em;
-      text-indent: -2em;
-      margin-top: 0.6rem;
-      line-height: 1.55;
-    }
-
-    @media (max-width: 760px) {
-      .waffle-layout { grid-template-columns: 1fr; }
-      .icon-grid { gap: 4px; padding: 8px; }
-    }
-  </style>
-</head>
-<body>
-
-  <article class="poster">
-
-    <!-- HEADER -->
-    <header class="poster-header">
-      <div class="poster-sub">Interactive Visual Infographic • Grades &amp; Motivation</div>
-      <h1>From Oral Disputation to Sorting Machine</h1>
-    </header>
-
-    <!-- =========================================================
-         BAND 1: CLICK-TO-X-RAY GRAMMAR OF SCHOOLING
-         ========================================================= -->
-    <section class="band">
-      <div class="band-top">
-        <span class="band-badge">01 • Grammar of Schooling (Tyack &amp; Cuban, 1995)</span>
-        <button class="action-btn active-red" id="xrayBtn" onclick="toggleXray()">Click B- Stamp to X-Ray</button>
-      </div>
-
-      <svg class="graphic" viewBox="0 0 960 250" role="img" aria-label="Interactive equation showing bells and rows of desks producing an opaque B minus grade that opens on click">
-        <!-- School Bell -->
-        <g transform="translate(55, 65)">
-          <rect width="115" height="120" rx="16" fill="#22201B" stroke="#D99B38" stroke-width="2.5"/>
-          <path d="M57,26 C40,26 32,40 32,58 L24,74 L90,74 L82,58 C82,40 74,26 57,26 Z" fill="#D99B38"/>
-          <circle cx="57" cy="82" r="7" fill="#D99B38"/>
-          <text x="57" y="106" text-anchor="middle" font-size="10.5" fill="#F7F4EC" font-weight="bold">50-MIN BELLS</text>
-        </g>
-
-        <text x="195" y="135" text-anchor="middle" font-size="32" fill="#7D7668" font-weight="bold">+</text>
-
-        <!-- Uniform Desks -->
-        <g transform="translate(220, 65)">
-          <rect width="115" height="120" rx="16" fill="#22201B" stroke="#D99B38" stroke-width="2.5"/>
-          <circle cx="40" cy="42" r="9" fill="#D99B38"/>
-          <rect x="26" y="55" width="28" height="8" rx="3" fill="#D99B38"/>
-          <circle cx="75" cy="42" r="9" fill="#D99B38"/>
-          <rect x="61" y="55" width="28" height="8" rx="3" fill="#D99B38"/>
-          <circle cx="40" cy="74" r="7" fill="#9E9789"/>
-          <circle cx="75" cy="74" r="7" fill="#9E9789"/>
-          <text x="57" y="106" text-anchor="middle" font-size="10.5" fill="#F7F4EC" font-weight="bold">UNIFORM ROWS</text>
-        </g>
-
-        <!-- Arrow -->
-        <path d="M355,125 L405,125 M395,115 L407,125 L395,135" fill="none" stroke="#D99B38" stroke-width="4" stroke-linecap="round"/>
-
-        <!-- CENTER INTERACTIVE STAMP (Switches between Opaque B- and X-Ray Breakdown) -->
-        <g id="stampClosed" class="clickable" transform="translate(425, 32)" onclick="toggleXray()">
-          <rect width="265" height="186" rx="18" fill="#2E1B19" stroke="#D94E3F" stroke-width="3"/>
-          <circle cx="132" cy="78" r="48" fill="rgba(217,78,63,0.22)" stroke="#D94E3F" stroke-width="4"/>
-          <text x="132" y="95" text-anchor="middle" font-family="Georgia, serif" font-size="50" fill="#D94E3F" font-weight="bold">B-</text>
-          <text x="132" y="150" text-anchor="middle" font-size="11.5" fill="#F7F4EC" font-weight="bold">TAP TO X-RAY GRADE</text>
-          <text x="132" y="168" text-anchor="middle" font-size="9.5" fill="#D99B38" font-weight="bold">WHAT IS ACTUALLY INSIDE?</text>
-        </g>
-
-        <!-- X-Ray Open View (Hidden by default) -->
-        <g id="stampOpen" class="clickable" transform="translate(425, 32)" onclick="toggleXray()" style="display:none;">
-          <rect width="265" height="186" rx="18" fill="#1D1C18" stroke="#2E8B80" stroke-width="3"/>
-          <!-- Tile 1: Mastery -->
-          <rect x="14" y="14" width="112" height="72" rx="10" fill="#162B29" stroke="#2E8B80" stroke-width="1.8"/>
-          <text x="70" y="45" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#2E8B80" font-weight="bold">25%</text>
-          <text x="70" y="68" text-anchor="middle" font-size="10" fill="#F7F4EC" font-weight="bold">MASTERY</text>
-
-          <!-- Tile 2: Attendance -->
-          <rect x="138" y="14" width="112" height="72" rx="10" fill="#292318" stroke="#D99B38" stroke-width="1.8"/>
-          <text x="194" y="45" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#D99B38" font-weight="bold">30%</text>
-          <text x="194" y="68" text-anchor="middle" font-size="10" fill="#F7F4EC" font-weight="bold">ATTENDANCE</text>
-
-          <!-- Tile 3: Formatting -->
-          <rect x="14" y="98" width="112" height="72" rx="10" fill="#292318" stroke="#D99B38" stroke-width="1.8"/>
-          <text x="70" y="129" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#D99B38" font-weight="bold">25%</text>
-          <text x="70" y="152" text-anchor="middle" font-size="10" fill="#F7F4EC" font-weight="bold">RULES / LATE</text>
-
-          <!-- Tile 4: Bias -->
-          <rect x="138" y="98" width="112" height="72" rx="10" fill="#2E1B19" stroke="#D94E3F" stroke-width="1.8"/>
-          <text x="194" y="129" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#D94E3F" font-weight="bold">20%</text>
-          <text x="194" y="152" text-anchor="middle" font-size="10" fill="#F7F4EC" font-weight="bold">BIAS / HABITS</text>
-        </g>
-
-        <!-- Arrow to Outcome -->
-        <path d="M708,125 L752,125 M742,115 L754,125 L742,135" fill="none" stroke="#7D7668" stroke-width="4" stroke-linecap="round"/>
-
-        <!-- Administrative Tool Badge -->
-        <g transform="translate(770, 48)">
-          <rect width="155" height="154" rx="16" fill="#25211B" stroke="#D99B38" stroke-width="2.5"/>
-          <rect x="52" y="24" width="50" height="58" rx="6" fill="#D99B38"/>
-          <line x1="62" y1="40" x2="92" y2="40" stroke="#151412" stroke-width="3"/>
-          <line x1="62" y1="52" x2="92" y2="52" stroke="#151412" stroke-width="3"/>
-          <line x1="62" y1="64" x2="82" y2="64" stroke="#151412" stroke-width="3"/>
-          <text x="77" y="110" text-anchor="middle" font-size="12" fill="#D99B38" font-weight="bold">ADMIN TOOL</text>
-          <text x="77" y="128" text-anchor="middle" font-size="9.5" fill="#A69F91" font-weight="bold">(Brookhart et al., 2016)</text>
-        </g>
-      </svg>
-    </section>
-
-    <!-- =========================================================
-         BAND 2: INTERACTIVE ORAL DISPUTATION STAGE
-         ========================================================= -->
-    <section class="band">
-      <div class="band-top">
-        <span class="band-badge" style="color:#2E8B80;">02 • Oral Disputation Era (Williams, 2022)</span>
-        <div class="pill-controls">
-          <button class="action-btn active-teal" id="city-athens" onclick="selectCity('athens')">1. Athens</button>
-          <button class="action-btn" id="city-bologna" onclick="selectCity('bologna')">2. Bologna (1088)</button>
-          <button class="action-btn" id="city-paris" onclick="selectCity('paris')">3. Paris</button>
-        </div>
-      </div>
-
-      <svg class="graphic" viewBox="0 0 960 230" role="img" aria-label="Interactive historical map of Athens, Bologna, and Paris showing live oral dialogue without letter grades">
-        <!-- Dialogue
+      font-family: Georgia, serif;
+      font-
