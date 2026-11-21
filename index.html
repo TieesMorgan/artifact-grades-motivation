@@ -3,231 +3,1263 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>From Oral Disputation to Sorting Machine | Interactive Infographic</title>
+  <title>From Oral Disputation to Sorting Machine | Grades & Motivation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-paper: #F8F5EE;
+      --bg-card: #FFFFFF;
+      --bg-stage: #EFECE4;
+      --ink-primary: #1C1B18;
+      --ink-secondary: #4E4B43;
+      --ink-muted: #767267;
+      --border-subtle: #DCD6C8;
+      --accent-red: #B83A2D;
+      --accent-red-soft: #F9E8E6;
+      --accent-teal: #246A63;
+      --accent-teal-soft: #E3F1EF;
+      --accent-gold: #B98223;
+      --accent-gold-soft: #FBF2E1;
+      --shadow-soft: 0 12px 32px rgba(28, 27, 24, 0.08);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      background: #11100E;
-      color: #F7F4EC;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 1.25rem 0.85rem 3rem;
+      background-color: var(--bg-paper);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .poster {
-      max-width: 1040px;
-      margin: 0 auto;
-      background: #1B1A17;
-      border: 2px solid #36332C;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    /* Top Progress Bar */
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(28, 27, 24, 0.08);
+      z-index: 100;
     }
 
-    /* Header */
-    .poster-header {
-      background: linear-gradient(135deg, #26231D 0%, #161512 100%);
-      border-bottom: 2px solid #36332C;
-      padding: 1.5rem 1.25rem;
-      text-align: center;
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-red), var(--accent-teal));
+      transition: width 0.15s ease-out;
     }
 
-    .poster-sub {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #D99B38;
-      font-weight: 800;
-      margin-bottom: 0.3rem;
-    }
-
-    .poster-header h1 {
-      font-family: Georgia, serif;
-      font-size: clamp(1.5rem, 3.8vw, 2.4rem);
-      letter-spacing: -0.01em;
-    }
-
-    /* Infographic Bands */
-    .band {
-      border-bottom: 2px dashed #322F28;
-      padding: 1.25rem;
-    }
-
-    .band-top {
+    /* Sticky Chapter Nav */
+    .chapter-nav {
+      position: sticky;
+      top: 4px;
+      z-index: 90;
+      background: rgba(248, 245, 238, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.65rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 0.85rem;
     }
 
-    .band-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: #282620;
-      border: 1px solid #423E35;
-      color: #D99B38;
-      font-size: 0.74rem;
-      font-weight: 800;
+    .nav-brand {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.32rem 0.85rem;
-      border-radius: 999px;
+      letter-spacing: 0.06em;
+      color: var(--ink-secondary);
     }
 
-    .hint-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #A69F91;
-      background: #23211C;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid #36332C;
-    }
-
-    .band svg.graphic {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 14px;
-      background: #151412;
-      border: 1px solid #2C2A24;
-    }
-
-    .clickable {
-      cursor: pointer;
-      pointer-events: all;
-      transition: transform 0.18s ease, opacity 0.2s ease;
-    }
-
-    .clickable:hover {
-      opacity: 0.92;
-    }
-
-    /* Interactive Pill Buttons */
-    .pill-controls {
+    .nav-pills {
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
     }
 
-    .action-btn {
-      background: #25231E;
-      border: 1px solid #444036;
-      color: #EFECE4;
-      font-size: 0.76rem;
-      font-weight: 700;
-      padding: 0.38rem 0.85rem;
+    .nav-pill {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--ink-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.32rem 0.75rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .nav-pill:hover {
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+
+    .nav-pill.active {
+      background: var(--ink-primary);
+      color: var(--bg-paper);
+      border-color: var(--ink-primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      background: var(--accent-teal-soft);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.15rem;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      color: var(--ink-secondary);
+      max-width: 680px;
+      margin: 0 auto 2rem;
+    }
+
+    .scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+      animation: floatCue 2.2s ease-in-out infinite;
+    }
+
+    @keyframes floatCue {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* Main Scrollytelling Grid */
+    .scrolly-wrapper {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* Sticky Visual Stage */
+    .visual-stage {
+      position: sticky;
+      top: 4.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      min-height: 560px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .stage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .stage-era {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .stage-counter {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .scene-visual {
+      display: none;
+      animation: fadeScene 0.45s ease forwards;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .scene-visual.active {
+      display: flex;
+    }
+
+    @keyframes fadeScene {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hotspot Interactive Drawer inside Stage */
+    .hotspot-drawer {
+      margin-top: 1.25rem;
+      background: var(--bg-stage);
+      border-left: 4px solid var(--accent-gold);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.9rem;
+      color: var(--ink-primary);
+    }
+
+    .hotspot-drawer strong {
+      display: block;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 0.25rem;
+    }
+
+    /* Scene 1: Report Card Graphic */
+    .report-card {
+      background: #FCFBF7;
+      border: 2px solid var(--ink-primary);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 6px 6px 0 var(--border-subtle);
+    }
+
+    .report-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--ink-primary);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .report-grade-stamp {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--accent-red);
+      border: 3px solid var(--accent-red);
+      border-radius: 12px;
+      padding: 0.15rem 0.9rem;
+      transform: rotate(-4deg);
+      background: var(--accent-red-soft);
+    }
+
+    .hotspot-btn-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .hotspot-chip {
+      background: var(--bg-paper);
+      border: 1px solid var(--ink-primary);
+      color: var(--ink-primary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.4rem 0.75rem;
       border-radius: 999px;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
-    .action-btn:hover { background: #34312A; }
-    .action-btn.active-gold { background: #D99B38; color: #141311; border-color: #D99B38; }
-    .action-btn.active-teal { background: #2E8B80; color: #FFF; border-color: #2E8B80; }
-    .action-btn.active-red { background: #D94E3F; color: #FFF; border-color: #D94E3F; }
-
-    /* BAND 1: Reliable HTML/CSS Visual Equation + Clickable X-Ray Card */
-    .b1-stage {
-      background: #151412;
-      border: 1px solid #2C2A24;
-      border-radius: 14px;
-      padding: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+    .hotspot-chip:hover, .hotspot-chip.selected {
+      background: var(--ink-primary);
+      color: var(--bg-paper);
     }
 
-    .b1-tile {
-      width: 126px;
-      height: 156px;
-      background: #22201B;
-      border: 2px solid #D99B38;
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.65rem;
+    /* SVG Map Styles (Scenes 2 & 3) */
+    .map-container {
+      background: #E9E4D8;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
       padding: 0.75rem;
-      text-align: center;
+      position: relative;
     }
 
-    .b1-tile span {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .b1-op {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #7D7668;
-    }
-
-    .xray-card {
-      width: 280px;
-      min-height: 186px;
-      border-radius: 18px;
-      padding: 1rem;
-      cursor: pointer;
-      user-select: none;
-      transition: transform 0.2s ease, border-color 0.25s ease, background 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .xray-card:hover {
-      transform: scale(1.02);
-    }
-
-    .xray-card.closed {
-      background: #2E1B19;
-      border: 3px solid #D94E3F;
-    }
-
-    .xray-card.open {
-      background: #1A1F1E;
-      border: 3px solid #2E8B80;
-    }
-
-    .grade-circle {
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      background: rgba(217, 78, 63, 0.22);
-      border: 4px solid #D94E3F;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Georgia, serif;
-      font-size: 2.75rem;
-      font-weight: 700;
-      color: #D94E3F;
-      margin-bottom: 0.65rem;
-    }
-
-    .xray-grid {
+    .map-svg {
       width: 100%;
+      height: 270px;
+      display: block;
+    }
+
+    .map-pin {
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .map-pin:hover circle.pin-core {
+      r: 9;
+    }
+
+    /* Scene 4: Interactive Variance & Neurodivergent Equity Simulator */
+    .simulator-box {
+      background: #FAF8F3;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+
+    .sim-controls {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-red);
+      cursor: pointer;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider-round {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: #CCC6B8;
+      transition: 0.3s;
+      border-radius: 24px;
+    }
+
+    .slider-round:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider-round {
+      background-color: var(--accent-teal);
+    }
+
+    input:checked + .slider-round:before {
+      transform: translateX(20px);
+    }
+
+    .grade-comparison-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.55rem;
+      gap: 0.85rem;
+      margin-bottom: 1rem;
     }
 
-    .xray-cell {
-      border-radius: 10px;
-      padding: 0.55rem 0.4rem;
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.85rem;
       text-align: center;
     }
 
-    .xray-cell strong {
+    .metric-card span {
       display: block;
-      font-family: Georgia, serif;
-      font-
+      font-size: 0.74rem;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .metric-card strong {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+    }
+
+    .stacked-bar {
+      height: 28px;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      border: 1px solid var(--ink-primary);
+    }
+
+    .bar-seg {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #FFF;
+      transition: width 0.35s ease;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .bar-legend {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      margin-top: 0.55rem;
+      color: var(--ink-secondary);
+    }
+
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+
+    /* Scene 5: Feedback Refraction Lens */
+    .refraction-toggle-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      background: var(--bg-stage);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+    }
+
+    .lens-btn {
+      border: none;
+      padding: 0.55rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink-secondary);
+      transition: all 0.2s ease;
+    }
+
+    .lens-btn.active-controlling {
+      background: var(--accent-red);
+      color: #FFF;
+    }
+
+    .lens-btn.active-informational {
+      background: var(--accent-teal);
+      color: #FFF;
+    }
+
+    .essay-artifact {
+      background: #FFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .essay-grade-overlay {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent-red);
+      border: 2px solid var(--accent-red);
+      background: var(--accent-red-soft);
+      padding: 0.1rem 0.7rem;
+      border-radius: 8px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .essay-grade-overlay.hidden-grade {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    .feedback-notes {
+      margin-top: 0.9rem;
+      padding: 0.85rem;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      transition: all 0.35s ease;
+    }
+
+    .feedback-notes.blurred {
+      background: #F4F2ED;
+      color: #9A958A;
+      filter: blur(1.4px);
+      user-select: none;
+    }
+
+    .feedback-notes.clear {
+      background: var(--accent-teal-soft);
+      color: var(--ink-primary);
+      border-left: 4px solid var(--accent-teal);
+      filter: none;
+    }
+
+    /* Scrolling Narrative Column */
+    .narrative-column {
+      display: flex;
+      flex-direction: column;
+      gap: 45vh;
+      padding-top: 1rem;
+      padding-bottom: 20vh;
+    }
+
+    .story-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(28, 27, 24, 0.04);
+      opacity: 0.45;
+      transform: translateY(6px);
+      transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+    }
+
+    .story-step.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      border-color: var(--ink-primary);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .step-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .story-step h2 {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .story-step p {
+      font-size: 0.98rem;
+      color: var(--ink-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .story-step p:last-child {
+      margin-bottom: 0;
+    }
+
+    .reflection-callout {
+      background: var(--bg-paper);
+      border-left: 3px solid var(--accent-teal);
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--ink-primary);
+      margin-top: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* APA 7th References Footer */
+    .references-section {
+      max-width: 920px;
+      margin: 2rem auto 5rem;
+      padding: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .ref-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .ref-header h2 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+    }
+
+    .copy-ref-btn {
+      background: var(--ink-primary);
+      color: var(--bg-paper);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .copy-ref-btn:hover {
+      opacity: 0.85;
+    }
+
+    .apa-list p {
+      padding-left: 2.2em;
+      text-indent: -2.2em;
+      margin-bottom: 1rem;
+      font-size: 0.94rem;
+      color: var(--ink-secondary);
+      line-height: 1.8;
+    }
+
+    /* Responsive Mobile Layout */
+    @media (max-width: 940px) {
+      .scrolly-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .visual-stage {
+        position: sticky;
+        top: 3.6rem;
+        z-index: 50;
+        min-height: auto;
+        padding: 1.15rem;
+      }
+
+      .map-svg {
+        height: 190px;
+      }
+
+      .narrative-column {
+        gap: 2.5rem;
+        padding-bottom: 4rem;
+      }
+
+      .story-step {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="progress-bar-container" aria-hidden="true">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <!-- Sticky Chapter Navigation -->
+  <nav class="chapter-nav" aria-label="Scrollytelling Chapters">
+    <div class="nav-brand">Grades &amp; Motivation • Interactive Map</div>
+    <div class="nav-pills">
+      <a href="#scene-1" class="nav-pill active" data-target="1">1. Grammar of Schooling</a>
+      <a href="#scene-2" class="nav-pill" data-target="2">2. Oral Disputation</a>
+      <a href="#scene-3" class="nav-pill" data-target="3">3. Sorting Machine</a>
+      <a href="#scene-4" class="nav-pill" data-target="4">4. Variance &amp; Equity</a>
+      <a href="#scene-5" class="nav-pill" data-target="5">5. Feedback Lens</a>
+      <a href="#references" class="nav-pill">References</a>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero">
+    <span class="hero-kicker">Interactive Scrollytelling Artifact</span>
+    <h1>From Oral Disputation to Sorting Machine</h1>
+    <p>
+      An interactive exploration tracing how letter grades evolved from 19th-century administrative shortcuts into high-stakes sorting tools—and how informational feedback restores intrinsic motivation and neurodivergent equity.
+    </p>
+    <div class="scroll-cue">↓ Scroll to explore each historical &amp; psychological shift</div>
+  </header>
+
+  <!-- Main Scrollytelling Container -->
+  <main class="scrolly-wrapper">
+
+    <!-- LEFT: Sticky Interactive Visual Stage -->
+    <aside class="visual-stage" aria-live="polite">
+      <div class="stage-header">
+        <span class="stage-era" id="stageEra">Chapter 01 • Institutional Norms</span>
+        <span class="stage-counter" id="stageCounter">Scene 1 of 5</span>
+      </div>
+
+      <!-- SCENE 1 VISUAL: Report Card & Grammar of Schooling -->
+      <div class="scene-visual active" id="visual-1">
+        <div class="report-card">
+          <div class="report-card-top">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-muted);">PERMANENT ACADEMIC RECORD</div>
+              <div style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600;">Term Evaluation Summary</div>
+            </div>
+            <div class="report-grade-stamp" aria-label="Grade B minus">B-</div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--ink-secondary); margin-bottom: 0.75rem;">
+            Click a diagnostic pin below to interrogate what this single letter hides:
+          </p>
+          <div class="hotspot-btn-row">
+            <button class="hotspot-chip selected" onclick="setHotspot(1, 'grammar')">Pin A: Grammar of Schooling</button>
+            <button class="hotspot-chip" onclick="setHotspot(1, 'opacity')">Pin B: Diagnostic Opacity</button>
+            <button class="hotspot-chip" onclick="setHotspot(1, 'assumption')">Pin C: Student Assumption</button>
+          </div>
+        </div>
+        <div class="hotspot-drawer" id="hotspot-1">
+          <strong>Tyack &amp; Cuban (1995, as cited in Schneider &amp; Hutt, 2014)</strong>
+          Like age-graded classrooms and 50-minute bells, A–F grades operate as an unquestioned institutional habit—making an administrative invention feel like a natural law of learning.
+        </div>
+      </div>
+
+      <!-- SCENE 2 VISUAL: Ancient & Medieval Oral Disputations Map -->
+      <div class="scene-visual" id="visual-2">
+        <div class="map-container">
+          <svg class="map-svg" viewBox="0 0 520 260" role="img" aria-label="Stylized map of classical and medieval oral disputation centers in Athens, Bologna, and Paris">
+            <!-- Decorative Latitude/Longitude Grid -->
+            <line x1="0" y1="65" x2="520" y2="65" stroke="#D5CFC0" stroke-dasharray="4 4" />
+            <line x1="0" y1="130" x2="520" y2="130" stroke="#D5CFC0" stroke-dasharray="4 4" />
+            <line x1="0" y1="195" x2="520" y2="195" stroke="#D5CFC0" stroke-dasharray="4 4" />
+            <line x1="170" y1="0" x2="170" y2="260" stroke="#D5CFC0" stroke-dasharray="4 4" />
+            <line x1="350" y1="0" x2="350" y2="260" stroke="#D5CFC0" stroke-dasharray="4 4" />
+
+            <!-- Stylized Landmass Silhouettes -->
+            <path d="M90,40 Q150,30 195,70 T265,125 T365,185 L430,225 L340,235 Q250,190 190,155 T85,110 Z" fill="#DCD5C4" stroke="#BDB49F" stroke-width="1.5"/>
+
+            <!-- Dialogue Arcs (Non-numerical transmission) -->
+            <path d="M375,195 Q295,120 235,130" fill="none" stroke="#246A63" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <path d="M235,130 Q180,85 150,75" fill="none" stroke="#246A63" stroke-width="2.5" stroke-dasharray="5 4"/>
+
+            <!-- Pin 1: Athens -->
+            <g class="map-pin" onclick="setHotspot(2, 'athens')">
+              <circle cx="375" cy="195" r="14" fill="rgba(36,106,99,0.2)"/>
+              <circle class="pin-core" cx="375" cy="195" r="7" fill="#246A63"/>
+              <text x="375" y="222" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="600" fill="#1C1B18">ATHENS (Classical)</text>
+            </g>
+
+            <!-- Pin 2: Bologna -->
+            <g class="map-pin" onclick="setHotspot(2, 'bologna')">
+              <circle cx="235" cy="130" r="14" fill="rgba(36,106,99,0.2)"/>
+              <circle class="pin-core" cx="235" cy="130" r="7" fill="#246A63"/>
+              <text x="235" y="156" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="600" fill="#1C1B18">BOLOGNA (1088)</text>
+            </g>
+
+            <!-- Pin 3: Paris -->
+            <g class="map-pin" onclick="setHotspot(2, 'paris')">
+              <circle cx="150" cy="75" r="14" fill="rgba(36,106,99,0.2)"/>
+              <circle class="pin-core" cx="150" cy="75" r="7" fill="#246A63"/>
+              <text x="150" y="55" text-anchor="middle" font-family="JetBrains Mono" font-size="11" font-weight="600" fill="#1C1B18">PARIS (Medieval)</text>
+            </g>
+          </svg>
+        </div>
+        <div class="hotspot-drawer" id="hotspot-2" style="border-left-color: var(--accent-teal);">
+          <strong style="color: var(--accent-teal);">Athens • Socratic &amp; Dialectic Inquiry (Williams, 2022)</strong>
+          Click any map node above. In antiquity, student understanding was demonstrated live through reasoning and oral defense—without competitive GPA rankings or numerical scores.
+        </div>
+      </div>
+
+      <!-- SCENE 3 VISUAL: 18th–19th Century Transatlantic Sorting Map -->
+      <div class="scene-visual" id="visual-3">
+        <div class="map-container">
+          <svg class="map-svg" viewBox="0 0 520 260" role="img" aria-label="Transatlantic diffusion of grading from Cambridge to Harvard and Mount Holyoke">
+            <rect width="520" height="260" fill="#E6E1D5"/>
+            <!-- Ocean Meridian Lines -->
+            <line x1="260" y1="0" x2="260" y2="260" stroke="#CFC8B8" stroke-dasharray="3 3"/>
+            <text x="260" y="24" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#767267">ATLANTIC SYSTEM DIFFUSION (1792–1897)</text>
+
+            <!-- North America East Coast Silhouette -->
+            <path d="M20,40 L145,55 L165,115 L125,175 L80,235 L20,235 Z" fill="#D6CEBC" stroke="#B7AE99"/>
+            <!-- UK / Europe Silhouette -->
+            <path d="M365,45 L435,55 L465,120 L485,205 L385,215 L360,130 Z" fill="#D6CEBC" stroke="#B7AE99"/>
+
+            <!-- Transatlantic Diffusion Arc -->
+            <path d="M395,95 Q265,30 142,102" fill="none" stroke="#B83A2D" stroke-width="2.5" stroke-dasharray="6 4"/>
+
+            <!-- Node 1: Cambridge -->
+            <g class="map-pin" onclick="setHotspot(3, 'cambridge')">
+              <circle cx="395" cy="95" r="14" fill="rgba(184,58,45,0.2)"/>
+              <circle class="pin-core" cx="395" cy="95" r="7" fill="#B83A2D"/>
+              <text x="395" y="122" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" font-weight="600" fill="#1C1B18">CAMBRIDGE (1792)</text>
+            </g>
+
+            <!-- Node 2: Harvard -->
+            <g class="map-pin" onclick="setHotspot(3, 'harvard')">
+              <circle cx="142" cy="102" r="14" fill="rgba(184,58,45,0.2)"/>
+              <circle class="pin-core" cx="142" cy="102" r="7" fill="#B83A2D"/>
+              <text x="112" y="84" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" font-weight="600" fill="#1C1B18">HARVARD (1877)</text>
+            </g>
+
+            <!-- Node 3: Mount Holyoke -->
+            <g class="map-pin" onclick="setHotspot(3, 'holyoke')">
+              <circle cx="118" cy="138" r="14" fill="rgba(184,58,45,0.2)"/>
+              <circle class="pin-core" cx="118" cy="138" r="7" fill="#B83A2D"/>
+              <text x="115" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" font-weight="600" fill="#1C1B18">MT. HOLYOKE (1897)</text>
+            </g>
+          </svg>
+        </div>
+        <div class="hotspot-drawer" id="hotspot-3" style="border-left-color: var(--accent-red);">
+          <strong style="color: var(--accent-red);">Cambridge Tripos (1792) • Administrative Improvisation</strong>
+          Click each institution above. Competitive mathematical rankings at Cambridge were created to distribute scarce fellowships—not to guide student learning (Schneider &amp; Hutt, 2014; Williams, 2022).
+        </div>
+      </div>
+
+      <!-- SCENE 4 VISUAL: Variance & Neurodivergent Equity Simulator -->
+      <div class="scene-visual" id="visual-4">
+        <div class="simulator-box">
+          <div class="sim-controls">
+            <div>
+              <div class="slider-label-row">
+                <label for="stakesSlider">Standardization &amp; Compliance Stakes</label>
+                <span id="stakesValue" style="font-family: var(--font-mono); color: var(--accent-red);">75% High-Stakes</span>
+              </div>
+              <input type="range" id="stakesSlider" min="0" max="100" value="75" oninput="updateSimulator()" />
+            </div>
+
+            <div class="toggle-row">
+              <span>Simulate Neurodivergent Processing Style</span>
+              <label class="switch" aria-label="Toggle Neurodivergent Processing Style">
+                <input type="checkbox" id="ndToggle" checked onchange="updateSimulator()" />
+                <span class="slider-round"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="grade-comparison-cards">
+            <div class="metric-card">
+              <span>True Subject Mastery</span>
+              <strong style="color: var(--accent-teal);">88% (A)</strong>
+            </div>
+            <div class="metric-card">
+              <span>Displayed Transcript Grade</span>
+              <strong id="displayedGrade" style="color: var(--accent-red);">68% (C+)</strong>
+            </div>
+          </div>
+
+          <div class="stacked-bar" aria-label="Grade Variance Breakdown">
+            <div class="bar-seg" id="segMastery" style="width: 25%; background: #246A63;">25% Mastery</div>
+            <div class="bar-seg" id="segCompliance" style="width: 45%; background: #B98223;">45% Compliance</div>
+            <div class="bar-seg" id="segBias" style="width: 30%; background: #B83A2D;">30% Bias</div>
+          </div>
+
+          <div class="bar-legend">
+            <span><i class="legend-dot" style="background:#246A63;"></i>Cognitive Mastery (Brookhart et al., 2016)</span>
+            <span><i class="legend-dot" style="background:#B98223;"></i>Attendance/Formatting</span>
+            <span><i class="legend-dot" style="background:#B83A2D;"></i>Interpersonal &amp; Neurodivergent Penalty</span>
+          </div>
+        </div>
+        <div class="hotspot-drawer" id="simInsight" style="border-left-color: var(--accent-red);">
+          <strong>Diagnostic Distortion Alert</strong>
+          Even though conceptual understanding remains at 88%, high compliance weighting and bias against non-traditional problem-solving artificially drop the final mark by 20 percentage points (Baniasadi et al., 2023).
+        </div>
+      </div>
+
+      <!-- SCENE 5 VISUAL: Feedback Refraction Lens -->
+      <div class="scene-visual" id="visual-5">
+        <div class="refraction-toggle-bar">
+          <button class="lens-btn active-controlling" id="btnControlling" onclick="setFeedbackLens('controlling')">
+            Controlling Grade Mode
+          </button>
+          <button class="lens-btn" id="btnInformational" onclick="setFeedbackLens('informational')">
+            Informational Feedback Mode
+          </button>
+        </div>
+
+        <div class="essay-artifact">
+          <div class="essay-grade-overlay" id="essayGradeStamp">B-</div>
+          <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-muted); margin-bottom: 0.25rem;">
+            STUDENT DRAFT SUBMISSION • RESEARCH SYNTHESIS
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 1.15rem; margin-bottom: 0.5rem;">
+            Draft Analysis: Motivation in Classroom Assessment
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--ink-secondary);">
+            "Students frequently prioritize rubric checklists over conceptual depth when summative point deductions dominate..."
+          </p>
+
+          <div class="feedback-notes blurred" id="feedbackNotes">
+            <strong>Criteria-Referenced Guidance (Ryan &amp; Deci, 2020):</strong>
+            Your synthesis of Brookhart et al. (2016) is strong. To deepen your argument in the next low-stakes checkpoint (Arhavbarien, 2026), contrast how oral feedback supports autonomy compared to point-based penalties.
+          </div>
+        </div>
+
+        <div class="hotspot-drawer" id="hotspot-5" style="border-left-color: var(--accent-red);">
+          <strong style="color: var(--accent-red);">Controlling Evaluation Effect (Ryan &amp; Deci, 2020; Williams, 2022)</strong>
+          When a letter grade appears beside written comments, ego-defensiveness and anxiety spike—causing students to fixate on the score and ignore actionable revision advice.
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Scrolling Narrative Cards -->
+    <section class="narrative-column">
+
+      <!-- Scene 1 -->
+      <article class="story-step is-active" id="scene-1" data-scene="1">
+        <span class="step-badge">Chapter 01 • The Unquestioned Constant</span>
+        <h2>The "Grammar of Schooling"</h2>
+        <p>
+          In formal schooling, grades are often treated as an unquestioned constant, part of what Tyack and Cuban (1995, as cited in Schneider &amp; Hutt, 2014) term the “grammar of schooling.”
+        </p>
+        <p>
+          I initially assumed letter grades directly reflected learning, but educational research reveals a far more complex reality. Understanding what grades represent, their historical origins, and their interaction with feedback has redefined how I interpret evaluation.
+        </p>
+        <div class="reflection-callout">
+          Ultimately, grades function as multidimensional administrative tools rather than pure measures of learning.
+        </div>
+      </article>
+
+      <!-- Scene 2 -->
+      <article class="story-step" id="scene-2" data-scene="2">
+        <span class="step-badge">Chapter 02 • Antiquity Through Renaissance</span>
+        <h2>Before Numbers: Oral Disputation</h2>
+        <p>
+          Historically, numerical marks were not designed for pedagogical guidance. Ancient and medieval education relied on live oral disputations, dialectical questioning, and narrative feedback without letter marks or competitive rankings (Williams, 2022).
+        </p>
+        <p>
+          In these dialogic settings, evaluation was inseparable from instruction: instructors observed how a learner reasoned through problems in real time rather than reducing complex understanding into a permanent symbol.
+        </p>
+      </article>
+
+      <!-- Scene 3 -->
+      <article class="story-step" id="scene-3" data-scene="3">
+        <span class="step-badge">Chapter 03 • 18th–19th Century Standardization</span>
+        <h2>Rise of the Administrative Sorting Machine</h2>
+        <p>
+          Standardized grading systems emerged during the 18th and 19th centuries—from Cambridge rankings to A–F scales at Harvard and Mount Holyoke—as administrative mechanisms to manage institutional records and sort students for expanding labor markets (Schneider &amp; Hutt, 2014; Williams, 2022).
+        </p>
+        <p>
+          This history explains why high-stakes marking encourages students to become risk-averse “entrepreneurial learners” who optimize points over authentic curiosity (Haswell, 1999, as cited in Schneider &amp; Hutt, 2014; Williams, 2022).
+        </p>
+      </article>
+
+      <!-- Scene 4 -->
+      <article class="story-step" id="scene-4" data-scene="4">
+        <span class="step-badge">Chapter 04 • Composite Variance &amp; Neurodivergent Equity</span>
+        <h2>What a Single Letter Actually Measures</h2>
+        <p>
+          Although students view grades as indicators of mastery, research demonstrates they are composite measures: teacher-assigned grades correlate only modestly with standardized achievement, as 75% of GPA variance reflects non-cognitive factors like effort, attendance, and subjective behavior (Brookhart et al., 2016; Williams, 2022).
+        </p>
+        <p>
+          Furthermore, final marks are frequently distorted by interpersonal bias and favoritism (Baniasadi et al., 2023; Brookhart et al., 2016). This vulnerability particularly affects <strong>neurodivergent learners</strong> when educators penalize behavioral differences, non-traditional problem-solving, or compliance factors like attention rather than assessing subject mastery (Arhavbarien, 2026; Baniasadi et al., 2023; Williams, 2022).
+        </p>
+        <div class="reflection-callout">
+          Use the interactive simulator on the left to see how high compliance stakes and bias distort an 88% mastery score.
+        </div>
+      </article>
+
+      <!-- Scene 5 -->
+      <article class="story-step" id="scene-5" data-scene="5">
+        <span class="step-badge">Chapter 05 • Self-Determination &amp; Lifelong Competence</span>
+        <h2>Informational Feedback Exit Ramps</h2>
+        <p>
+          Grades and descriptive feedback influence motivation differently. Self-determination theory contrasts controlling evaluations with informational feedback that supports autonomy and competence (Ryan &amp; Deci, 2020).
+        </p>
+        <p>
+          Letter grades offer minimal guidance, and combining marks with comments often leads students to ignore actionable advice (Ryan &amp; Deci, 2020; Williams, 2022). Conversely, low-stakes practice and criteria-referenced feedback foster self-regulation without defensiveness, driving genuine intellectual growth (Arhavbarien, 2026; Baniasadi et al., 2023; Ryan &amp; Deci, 2020).
+        </p>
+        <div class="reflection-callout">
+          Recognizing these limitations allows me to look past grade performance and focus on lifelong competence through low-stakes practice and informational feedback.
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- APA 7th Edition References Section -->
+  <footer class="references-section" id="references">
+    <div class="ref-header">
+      <h2>References (APA 7th Edition)</h2>
+      <button class="copy-ref-btn" onclick="copyReferences(this)">Copy APA References</button>
+    </div>
+    <div class="apa-list" id="apaList">
+      <p>Arhavbarien, J. (2026). Low-stakes assessments in secondary and further education schools: A systematic literature review. <em>Social Sciences &amp; Humanities Open</em>, <em>13</em>, Article 102320. https://doi.org/10.1016/j.ssaho.2025.102320</p>
+      <p>Baniasadi, A., Salehi, K., Khodaie, E., Bagheri Noaparast, K., &amp; Izanloo, B. (2023). Fairness in classroom assessment: A systematic review. <em>Asia-Pacific Education Researcher</em>, <em>32</em>(1), 91–109. https://doi.org/10.1007/s40299-021-00636-z</p>
+      <p>Brookhart, S. M., Guskey, T. R., Bowers, A. J., McMillan, J. H., Smith, J. K., Smith, L. F., Stevens, M. T., &amp; Welsh, M. E. (2016). A century of grading research: Meaning and value in the most common educational measure. <em>Review of Educational Research</em>, <em>86</em>(4), 803–848. https://doi.org/10.3102/0034654316672069</p>
+      <p>Ryan, R. M., &amp; Deci, E. L. (2020). Intrinsic and extrinsic motivation from a self-determination theory perspective: Definitions, theory, practices, and future directions. <em>Contemporary Educational Psychology</em>, <em>61</em>, Article 101860. https://doi.org/10.1016/j.cedpsych.2020.101860</p>
+      <p>Schneider, J., &amp; Hutt, E. (2014). Making the grade: A history of the A–F marking scheme. <em>Journal of Curriculum Studies</em>, <em>46</em>(2), 201–224. https://doi.org/10.1080/00220272.2013.790480</p>
+      <p>Williams, B. A. (2022). Teaching students to feel pleasure and pain at the wrong thing: The history of grades and grading. <em>Principia: A Journal of Classical Education</em>, <em>1</em>(1), 1–22. https://doi.org/10.5840/principia20229276</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scene Metadata
+    const sceneMeta = {
+      1: { era: "Chapter 01 • Institutional Norms", counter: "Scene 1 of 5" },
+      2: { era: "Chapter 02 • Antiquity to Renaissance", counter: "Scene 2 of 5" },
+      3: { era: "Chapter 03 • 18th–19th Century Expansion", counter: "Scene 3 of 5" },
+      4: { era: "Chapter 04 • Variance & Equity Simulator", counter: "Scene 4 of 5" },
+      5: { era: "Chapter 05 • Self-Determination & Feedback", counter: "Scene 5 of 5" }
+    };
+
+    // Hotspot Content Database
+    const hotspots = {
+      1: {
+        grammar: {
+          title: "Tyack & Cuban (1995, as cited in Schneider & Hutt, 2014)",
+          body: "Like age-graded classrooms and 50-minute bells, A–F grades operate as an unquestioned institutional habit—making an administrative invention feel like a natural law of learning."
+        },
+        opacity: {
+          title: "Diagnostic Opacity (Brookhart et al., 2016; Williams, 2022)",
+          body: "A single letter compresses cognitive mastery, late-work deductions, formatting compliance, and subjective teacher expectations into one opaque symbol."
+        },
+        assumption: {
+          title: "Personal Reflection Shift",
+          body: "Recognizing that grades are administrative artifacts rather than pure capability measures reframes how I interpret past evaluations and plan future growth."
+        }
+      },
+      2: {
+        athens: {
+          title: "Athens • Socratic & Dialectic Inquiry (Williams, 2022)",
+          body: "In antiquity, student understanding was demonstrated live through reasoning and oral defense—without competitive GPA rankings or numerical scores."
+        },
+        bologna: {
+          title: "University of Bologna (1088) • Public Disputation",
+          body: "Medieval scholars defended theses orally before peers and masters, receiving direct qualitative critique focused on conceptual mastery."
+        },
+        paris: {
+          title: "University of Paris • Formative Guild Apprenticeship",
+          body: "Assessment functioned like a craft guild: candidates demonstrated readiness through sustained dialogue rather than point accumulation."
+        }
+      },
+      3: {
+        cambridge: {
+          title: "Cambridge Tripos (1792) • Administrative Improvisation",
+          body: "Competitive mathematical rankings at Cambridge were created to distribute scarce fellowships—not to guide student learning (Schneider & Hutt, 2014; Williams, 2022)."
+        },
+        harvard: {
+          title: "Harvard University (1877) • Percentage & Division Scales",
+          body: "Expanding enrollment drove administrators to adopt numerical divisions to manage institutional records across large cohorts (Schneider & Hutt, 2014)."
+        },
+        holyoke: {
+          title: "Mount Holyoke College (1897) • The Modern A–F Scheme",
+          body: "Mount Holyoke paired percentage ranges with A–E/F letters, establishing the standardized currency used to sort students for labor markets (Schneider & Hutt, 2014)."
+        }
+      }
+    };
+
+    // Switch Active Scene Visuals & Nav Pills
+    function activateScene(sceneNum) {
+      document.querySelectorAll('.scene-visual').forEach(el => el.classList.remove('active'));
+      const activeVisual = document.getElementById(`visual-${sceneNum}`);
+      if (activeVisual) activeVisual.classList.add('active');
+
+      document.querySelectorAll('.story-step').forEach(step => step.classList.remove('is-active'));
+      const activeStep = document.getElementById(`scene-${sceneNum}`);
+      if (activeStep) activeStep.classList.add('is-active');
+
+      document.querySelectorAll('.nav-pill[data-target]').forEach(pill => {
+        pill.classList.toggle('active', pill.dataset.target === String(sceneNum));
+      });
+
+      if (sceneMeta[sceneNum]) {
+        document.getElementById('stageEra').textContent = sceneMeta[sceneNum].era;
+        document.getElementById('stageCounter').textContent = sceneMeta[sceneNum].counter;
+      }
+    }
+
+    // IntersectionObserver for Smooth Scrollytelling
+    const observerOptions = {
+      root: null,
+      rootMargin: "-35% 0px -35% 0px",
+      threshold: 0
+    };
+
+    const sceneObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sceneNum = entry.target.dataset.scene;
+          activateScene(sceneNum);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.story-step').forEach(step => sceneObserver.observe(step));
+
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      document.getElementById('progressBar').style.width = `${pct}%`;
+    });
+
+    // Update Hotspot Drawer
+    function setHotspot(scene, key) {
+      const data = hotspots[scene]?.[key];
+      if (!data) return;
+      const drawer = document.getElementById(`hotspot-${scene}`);
+      drawer.innerHTML = `<strong>${data.title}</strong>${data.body}`;
+
+      if (scene === 1) {
+        document.querySelectorAll('#visual-1 .hotspot-chip').forEach(btn => btn.classList.remove('selected'));
+        event.target.classList.add('selected');
+      }
+    }
+
+    // Scene 4: Interactive Variance & Neurodivergent Equity Simulator
+    function updateSimulator() {
+      const stakes = parseInt(document.getElementById('stakesSlider').value, 10);
+      const isNeurodivergent = document.getElementById('ndToggle').checked;
+
+      // Label readout
+      const label = stakes < 30 ? `${stakes}% Low-Stakes` : stakes < 70 ? `${stakes}% Moderate` : `${stakes}% High-Stakes`;
+      document.getElementById('stakesValue').textContent = label;
+
+      // Calculate variance segments (At 75% stakes -> ~25% mastery, ~45% compliance, ~30% bias)
+      const masteryPct = Math.max(20, Math.round(100 - stakes));
+      const remaining = 100 - masteryPct;
+      const biasRatio = isNeurodivergent ? 0.42 : 0.18;
+      const biasPct = Math.round(remaining * biasRatio);
+      const compliancePct = remaining - biasPct;
+
+      document.getElementById('segMastery').style.width = `${masteryPct}%`;
+      document.getElementById('segMastery').textContent = masteryPct >= 18 ? `${masteryPct}% Mastery` : '';
+
+      document.getElementById('segCompliance').style.width = `${compliancePct}%`;
+      document.getElementById('segCompliance').textContent = compliancePct >= 18 ? `${compliancePct}% Compliance` : '';
+
+      document.getElementById('segBias').style.width = `${biasPct}%`;
+      document.getElementById('segBias').textContent = biasPct >= 15 ? `${biasPct}% Bias` : '';
+
+      // Compute artificial grade drop while true conceptual mastery stays at 88%
+      const penalty = Math.round((stakes / 100) * (isNeurodivergent ? 26 : 11));
+      const displayedNum = Math.max(55, 88 - penalty);
+      const letter = displayedNum >= 85 ? 'A' : displayedNum >= 80 ? 'A-' : displayedNum >= 75 ? 'B' : displayedNum >= 70 ? 'B-' : displayedNum >= 65 ? 'C+' : 'C';
+
+      const gradeEl = document.getElementById('displayedGrade');
+      gradeEl.textContent = `${displayedNum}% (${letter})`;
+      gradeEl.style.color = penalty > 12 ? 'var(--accent-red)' : 'var(--accent-teal)';
+
+      const insightEl = document.getElementById('simInsight');
+      if (stakes <= 25) {
+        insightEl.style.borderLeftColor = 'var(--accent-teal)';
+        insightEl.innerHTML = `<strong style="color: var(--accent-teal);">Mastery-Aligned Assessment (Arhavbarien, 2026)</strong>Low-stakes, transparent criteria minimize behavioral penalties and allow the displayed grade (${displayedNum}%) to accurately reflect actual subject mastery (88%).`;
+      } else if (isNeurodivergent) {
+        insightEl.style.borderLeftColor = 'var(--accent-red)';
+        insightEl.innerHTML = `<strong style="color: var(--accent-red);">Neurodivergent Equity Gap (Baniasadi et al., 2023; Brookhart et al., 2016)</strong>Penalizing non-traditional problem-solving, attention norms, and formatting drops an 88% mastery level to ${displayedNum}% (${letter})—obscuring real competence.`;
+      } else {
+        insightEl.style.borderLeftColor = 'var(--accent-gold)';
+        insightEl.innerHTML = `<strong style="color: var(--accent-gold);">Non-Cognitive Variance (Brookhart et al., 2016)</strong>Even without neurodivergent compliance penalties, high-stakes non-cognitive factors pull the reported score down to ${displayedNum}% (${letter}).`;
+      }
+    }
+
+    // Scene 5: Feedback Refraction Toggle
+    function setFeedbackLens(mode) {
+      const btnCtrl = document.getElementById('btnControlling');
+      const btnInfo = document.getElementById('btnInformational');
+      const stamp = document.getElementById('essayGradeStamp');
+      const notes = document.getElementById('feedbackNotes');
+      const drawer = document.getElementById('hotspot-5');
+
+      if (mode === 'controlling') {
+        btnCtrl.className = 'lens-btn active-controlling';
+        btnInfo.className = 'lens-btn';
+        stamp.classList.remove('hidden-grade');
+        notes.className = 'feedback-notes blurred';
+        drawer.style.borderLeftColor = 'var(--accent-red)';
+        drawer.innerHTML = `<strong style="color: var(--accent-red);">Controlling Evaluation Effect (Ryan &amp; Deci, 2020; Williams, 2022)</strong>When a letter grade appears beside written comments, ego-defensiveness and anxiety spike—causing students to fixate on the score and ignore actionable revision advice.`;
+      } else {
+        btnCtrl.className = 'lens-btn';
+        btnInfo.className = 'lens-btn active-informational';
+        stamp.classList.add('hidden-grade');
+        notes.className = 'feedback-notes clear';
+        drawer.style.borderLeftColor = 'var(--accent-teal)';
+        drawer.innerHTML = `<strong style="color: var(--accent-teal);">Informational Feedback Lens (Arhavbarien, 2026; Ryan &amp; Deci, 2020)</strong>Removing the letter mark eliminates defensive ego-threat, freeing cognitive bandwidth to engage with criteria-referenced guidance and autonomous self-regulation.`;
+      }
+    }
+
+    // Copy APA References Utility
+    function copyReferences(btn) {
+      const text = Array.from(document.querySelectorAll('#apaList p'))
+        .map(p => p.textContent.trim())
+        .join('\n\n');
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied to Clipboard!';
+        setTimeout(() => { btn.textContent = original; }, 2200);
+      });
+    }
+
+    // Initialize simulator default state
+    updateSimulator();
+  </script>
+</body>
+</html>
